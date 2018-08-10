@@ -4,7 +4,7 @@ golang类型扩充 , 超级类型, 面向对象用法. 这里只起到一个抛�
 ## 用法示例
 ```go
 func main()  {
-	var ss String = " asdf,sdfsa"
+	var ss superType.String = " asdf,sdfsa"
 
 	a:= ss.Split(",")
 	b:= ss.Length()
