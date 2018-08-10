@@ -3,6 +3,13 @@ golang类型扩充 , 超级类型, 面向对象用法. 这里只起到一个抛�
 
 ## 用法示例
 ```go
+package main
+
+import (
+	"github.com/gohouse/superType"
+	"fmt"
+)
+
 func main()  {
 	var ss superType.String = " asdf,sdfsa"
 
