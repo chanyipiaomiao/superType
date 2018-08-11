@@ -38,3 +38,24 @@ func main()  {
 }
 ```
 
+## 超级类型转换
+1. 已有的string转换超级类型  
+```apple js
+var a = "my string"
+
+var superStr superType.String = superType.String(a)
+
+println(superStr.Length())
+```
+
+2. 超级String类型返回string类型  
+```go
+var superStr superType.String = "my super String"
+
+var str string = superStr.String()
+// or
+var str2 string = string(superStr)
+
+println(str, str2)
+```
+
