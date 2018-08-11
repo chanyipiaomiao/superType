@@ -18,7 +18,7 @@ func main()  {
 	println(str.Index(","))  // result : 6
 	println(str.Contains("Fizz"))  // result : true
 	println(str.StartWith("He"))  // result : true
-	println(str.STrimSpace())  // result : Hel lo, Fizzday.net
+	println(str.TrimSpace())  // result : Hel lo, Fizzday.net
 	println(str.EndWith("net"))  // result : false
 	println(str.STrimSpace().EndWith("net"))  // result : true
 	println(str.Replace("net", "com"))  // result : Hel lo, Fizzday.com
