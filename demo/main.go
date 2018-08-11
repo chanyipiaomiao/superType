@@ -5,7 +5,10 @@ import (
 )
 
 func main()  {
-	var str superType.String = "Hel lo, Fizzday.net  "
+	//var str superType.String = "Hel lo, Fizzday.net  "
+	//var str superType.String = "你好吗, 我很好,你 呢? "
+	var str superType.String = "你好吗, 我"
+	println(str.Split(","))  // result : [Hel lo  Fizzday.net  ]
 	// or
 	//var str = superType.String(" Hel lo, Fizzday.net  ")
 

@@ -1,6 +1,9 @@
 package superType
 
-import "strings"
+import (
+	"strings"
+	"unicode/utf8"
+)
 
 type Stringer interface {
 	String() string
@@ -33,7 +36,7 @@ func (ss String) String() string {
 	return string(ss)
 }
 func (ss String) Length() int {
-	return len(ss.String())
+	return utf8.RuneCountInString(ss.String())
 }
 func (ss String) Index(sep string) int {
 	return strings.Index(ss.String(), sep)
@@ -57,14 +60,14 @@ func (ss String) ToTitle() string {
 }
 
 func (ss String) StartWith(substr string) bool {
-	strlen := len(substr)
+	strlen := String(substr).Length()
 	if strlen<=ss.Length() && ss.String()[:strlen]==substr {
 		return true
 	}
 	return false
 }
 func (ss String) EndWith(substr string) bool {
-	strlen := len(substr)
+	strlen := String(substr).Length()
 	sslen := ss.Length()
 	if strlen<=ss.Length() && ss.String()[sslen-strlen:sslen]==substr {
 		return true
