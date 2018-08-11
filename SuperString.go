@@ -2,7 +2,6 @@ package superType
 
 import (
 	"strings"
-	"unicode/utf8"
 )
 
 type Stringer interface {
@@ -35,8 +34,13 @@ type String string
 func (ss String) String() string {
 	return string(ss)
 }
+func (ss String) SString() String {
+	nameRune := []rune(ss.String())
+	return String(nameRune)
+}
 func (ss String) Length() int {
-	return utf8.RuneCountInString(ss.String())
+	nameRune := []rune(ss.String())
+	return len(nameRune)
 }
 func (ss String) Index(sep string) int {
 	return strings.Index(ss.String(), sep)
