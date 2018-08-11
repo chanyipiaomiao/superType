@@ -7,17 +7,25 @@ type Stringer interface {
 	Length() int
 	Index(sep string) int
 	Split(sep string) []string
-	Replace(old, new string, n ...int) string
 	Contains(substr string) bool
-	Repeat(count int) string
 	ToUpper() string
 	ToLower() string
 	ToTitle() string
-	Trim(flag ...string) string
-	TrimLeft(cutset string) string
-	TrimRight(cutset string) string
+
 	StartWith(substr string) bool
 	EndWith(substr string) bool
+
+	// 以下方法, 在方法前加 S 的, 都是自返回, 可链式多次调用的
+	Replace(old, new string, n ...int) string
+	SReplace(old, new string, n ...int) String
+	Repeat(count int) string
+	SRepeat(count int) string
+	Trim(flag ...string) string
+	STrim(flag ...string) string
+	TrimLeft(cutset string) string
+	STrimLeft(cutset string) string
+	TrimRight(cutset string) string
+	STrimRight(cutset string) string
 }
 type String string
 
@@ -33,19 +41,11 @@ func (ss String) Index(sep string) int {
 func (ss String) Split(sep string) []string {
 	return strings.Split(ss.String(), sep)
 }
-func (ss String) Replace(old, new string, n ...int) string {
-	tmp := -1
-	if len(n) > 0 {
-		tmp = n[0]
-	}
-	return strings.Replace(ss.String(), old, new, tmp)
-}
+
 func (ss String) Contains(substr string) bool {
 	return strings.Contains(ss.String(), substr)
 }
-func (ss String) Repeat(count int) string {
-	return strings.Repeat(ss.String(), count)
-}
+
 func (ss String) ToUpper() string {
 	return strings.ToUpper(ss.String())
 }
@@ -54,19 +54,6 @@ func (ss String) ToLower() string {
 }
 func (ss String) ToTitle() string {
 	return strings.ToTitle(ss.String())
-}
-func (ss String) Trim(flag ...string) string {
-	var sub = " "
-	if len(flag) > 0 {
-		sub = flag[0]
-	}
-	return strings.Trim(ss.String(), sub)
-}
-func (ss String) TrimLeft(cutset string) string {
-	return strings.TrimLeft(ss.String(), cutset)
-}
-func (ss String) TrimRight(cutset string) string {
-	return strings.TrimRight(ss.String(), cutset)
 }
 
 func (ss String) StartWith(substr string) bool {
@@ -78,8 +65,69 @@ func (ss String) StartWith(substr string) bool {
 }
 func (ss String) EndWith(substr string) bool {
 	strlen := len(substr)
-	if strlen<=ss.Length() && ss.String()[ss.Length()-strlen:strlen]==substr {
+	sslen := ss.Length()
+	if strlen<=ss.Length() && ss.String()[sslen-strlen:sslen]==substr {
 		return true
 	}
 	return false
+}
+
+// 拥有自返回方法的函数
+
+func (ss String) Replace(old, new string, n ...int) string {
+	tmp := -1
+	if len(n) > 0 {
+		tmp = n[0]
+	}
+	return strings.Replace(ss.String(), old, new, tmp)
+}
+func (ss String) SReplace(old, new string, n ...int) String {
+	return String(ss.Replace(old,new,n...))
+}
+
+func (ss String) Repeat(count int) string {
+	return strings.Repeat(ss.String(), count)
+}
+func (ss String) SRepeat(count int) String {
+	return String(ss.Repeat(count))
+}
+
+func (ss String) Trim(cutset ...string) string {
+	var sub = " "
+	if len(cutset) > 0 {
+		sub = cutset[0]
+	}
+	return strings.Trim(ss.String(), sub)
+}
+func (ss String) STrim(cutset ...string) String {
+	return String(ss.Trim(cutset...))
+}
+
+func (ss String) TrimLeft(cutset ...string) string {
+	var sub = " "
+	if len(cutset) > 0 {
+		sub = cutset[0]
+	}
+	return strings.TrimLeft(ss.String(), sub)
+}
+func (ss String) STrimLeft(cutset string) String {
+	return String(ss.TrimLeft(cutset))
+}
+
+func (ss String) TrimRight(cutset ...string) string {
+	var sub = " "
+	if len(cutset) > 0 {
+		sub = cutset[0]
+	}
+	return strings.TrimRight(ss.String(), sub)
+}
+func (ss String) STrimRight(cutset string) String {
+	return String(ss.TrimRight(cutset))
+}
+
+func (ss String) TrimSpace() string {
+	return strings.TrimSpace(ss.String())
+}
+func (ss String) STrimSpace() String {
+	return String(ss.TrimSpace())
 }

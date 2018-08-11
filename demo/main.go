@@ -1,8 +1,3 @@
-# superType
-golang类型扩充 , 超级类型, 面向对象用法. 这里只起到一个抛砖引玉的作用, 欢迎广大面向对象爱好者一起扩充
-
-## 用法示例
-```go
 package main
 
 import (
@@ -35,5 +30,3 @@ func main()  {
 	println(str.STrimSpace().SReplace(" ","").SReplace("net","net.cn").
 		STrimRight(".cn").String()) // result : Hello,Fizzday.net
 }
-```
-
