@@ -20,14 +20,18 @@ type Stringer interface {
 	// 以下方法, 在方法前加 S 的, 都是自返回, 可链式多次调用的
 	Replace(old, new string, n ...int) string
 	SReplace(old, new string, n ...int) String
+
 	Repeat(count int) string
-	SRepeat(count int) string
+	SRepeat(count int) String
+
 	Trim(flag ...string) string
-	STrim(flag ...string) string
+	STrim(flag ...string) String
+
 	TrimLeft(cutset string) string
-	STrimLeft(cutset string) string
+	STrimLeft(cutset string) String
+
 	TrimRight(cutset string) string
-	STrimRight(cutset string) string
+	STrimRight(cutset string) String
 }
 type String string
 
