@@ -19,4 +19,11 @@ func main() {
 	brr := superType.MapSlice(arr)
 
 	fmt.Println(brr.Column("a"))
+
+	var crr = superType.Map{
+		"a":2,
+		"b":3,
+	}
+	fmt.Println(crr.Keys())
+	fmt.Println(crr.Values())
 }

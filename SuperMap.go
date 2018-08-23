@@ -36,9 +36,9 @@ func (ms MapSlice) Column(field string) []interface{} {
 	return tmp
 }
 
-func (ms Map) Keys(field string) []string {
+func (m Map) Keys() []string {
 	var tmp []string
-	arr := (map[string]interface{})(ms)
+	arr := (map[string]interface{})(m)
 	if len(arr)>0 {
 		for item,_ := range arr{
 			tmp = append(tmp, item)
@@ -47,9 +47,9 @@ func (ms Map) Keys(field string) []string {
 	return tmp
 }
 
-func (ms Map) Values(field string) []interface{} {
+func (m Map) Values() []interface{} {
 	var tmp []interface{}
-	arr := (map[string]interface{})(ms)
+	arr := (map[string]interface{})(m)
 	if len(arr)>0 {
 		for _,item := range arr{
 			tmp = append(tmp, item)
