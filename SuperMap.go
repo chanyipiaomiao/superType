@@ -23,6 +23,10 @@ func (m Map) KeyExists(field string) bool {
 	return false
 }
 
+func (m Map) HasKey(field string) bool {
+	return m.KeyExists(field)
+}
+
 func (ms MapSlice) Column(field string) []interface{} {
 	var tmp []interface{}
 	arr := ([]map[string]interface{})(ms)

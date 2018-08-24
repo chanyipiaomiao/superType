@@ -1,7 +1,8 @@
 # superType
 golang类型扩充 , 超级类型, 面向对象用法. 这里只起到一个抛砖引玉的作用, 欢迎广大面向对象爱好者一起扩充
 
-## 用法示例
+## superString 
+### 1. 用法示例
 ```go
 package main
 
@@ -38,7 +39,7 @@ func main()  {
 }
 ```
 
-## 超级类型转换
+### 2. 超级类型转换
 1. 已有的string转换超级String类型  
 ```apple js
 var a = "my string"
