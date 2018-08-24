@@ -1,5 +1,10 @@
 package superType
 
+import (
+	"fmt"
+	"strings"
+)
+
 type Arrayer interface {
 	Merge(arr []interface{}) []interface{}
 	Search(arr []interface{}) int
@@ -14,13 +19,25 @@ type Arrayer interface {
 
 	Map(arr func())
 	Reuce(arr func())
+
+	Join(sep string) string
 }
+
 type Array []interface{}
 
 func (a Array) Append(arr interface{}) []interface{} {
 	return append(([]interface{})(a), arr)
 }
+
 func (a *Array) SAppend(arr interface{}) *Array {
 	*a = append(([]interface{})(*a), arr)
 	return a
+}
+
+func (a Array) Join(sep string) string {
+	t := make([]string, len(a))
+	for i, v := range a {
+		t[i] = fmt.Sprint(v)
+	}
+	return strings.Join(t, sep)
 }
